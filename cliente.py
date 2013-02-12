@@ -1,7 +1,8 @@
 import socket
 import sys
 
-def cliente(puerto):
+def cliente(puerto, jugador):
+    '''localhost y puerto para comprar y saber si es el puerto correcto'''
     ip = '127.0.0.1'
     port = 5005
 
@@ -11,26 +12,25 @@ def cliente(puerto):
         print 'No se pudo crear socket cliente'
         sys.exit()
 
+    '''comprueba si el puerto es el correcto'''
     if puerto == port:
         print 'Conexion exitosa'
     else:
         print 'Puerto equivocado'
         sys.exit()
 
-    while True:
-        jugador = raw_input('Nombre: ')
-
-        try:
-            sock.sendto(jugador,(ip,puerto))
-            juego(sock, ip, puerto)
-        except socket.error:
-            print 'Error'
-            sys.exit()
+    '''Envia nombre de jugador'''
+    try:
+        sock.sendto(jugador,(ip,puerto))
+        juego(sock, ip, puerto)
+    except socket.error:
+        print 'Error'
+        sys.exit()
 
     sock.close()
 
 def juego(sock, ip, puerto):
-    
+    '''Espera por el msj de bienvenida del servidor'''
     while True:
         try:
             msj, address = sock.recvfrom(1024)
@@ -43,6 +43,8 @@ def juego(sock, ip, puerto):
             adivina(sock,ip,puerto)
 
 def adivina(sock,ip,puerto):
+    '''Recibe los msjs del servidor y en caso de recibir el string
+    con el ganador termina el programa'''
     while True:
         try:
             msj, address = sock.recvfrom(1024)
@@ -61,5 +63,6 @@ def adivina(sock,ip,puerto):
     
 
 if __name__ == '__main__':
-    puerto = int(sys.argv[1])
-    cliente(puerto)
+    nombre = sys.argv[1]
+    puerto = int(sys.argv[2])
+    cliente(puerto,nombre)
