@@ -1,0 +1,104 @@
+<!doctype hmtl>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>Laboratorio 2</title>
+  <style>
+    html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+
+    #estilo{
+    height: 100%;
+    }
+
+    @media print{
+    html, body{
+    height: auto;
+    }
+    
+    #estilo{
+    height: 650px;
+    }
+}
+  </style>
+  
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript">
+    var mapa;
+    function init(){
+    mapa = new google.maps.Map(document.getElementById("estilo"));
+    mapa.setZoom(19);
+    mapa.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+    var x = 25.729598
+    var y = -100.278065
+    var pos = new google.maps.LatLng(x, y);
+    mapa.setCenter(pos);
+    var config = {
+    strokeColor: "#0000FF",
+    strokeOpacity: 0.9,
+    strokeWeigth: 3,
+    fillColor: "#0000FF",
+    fillOpacity: 0.7,
+    map: mapa,
+    center: pos,
+    radius: 20
+    };
+    circulo = new google.maps.Circle(config);
+    
+    var config2 = {
+    strokeColor: "#FF00FF",
+    strokeOpacity: 0.9,
+    strokeWeigth: 3,
+    fillColor: "#FFAAFF",
+    fillOpacity: 0.35,
+    map: mapa,
+    center: new google.maps.LatLng(25.729623, -100.278161),
+    radius: 20
+    };
+    circulo = new google.maps.Circle(config2);
+
+    var config3 = {
+    strokeColor: "#AA33FF",
+    strokeOpacity: 0.9,
+    strokeWeigth: 3,
+    fillColor: "#AA33FF",
+    fillOpacity: 0.51,
+    map: mapa,
+    center: new google.maps.LatLng(25.729581, -100.278214),
+    radius: 20
+    };
+    circulo = new google.maps.Circle(config3);
+
+    var config4 = {
+    strokeColor: "#AAAAAA",
+    strokeOpacity: 0.9,
+    strokeWeigth: 3,
+    fillColor: "#AAAAAA",
+    fillOpacity: 0.41,
+    map: mapa,
+    center: new google.maps.LatLng(25.729439, -100.277908),
+    radius: 20
+    };
+    circulo = new google.maps.Circle(config4);
+
+    var config5 = {
+    strokeColor: "#AAAAFF",
+    strokeOpacity: 0.9,
+    strokeWeigth: 3,
+    fillColor: "#AAAAFF",
+    fillOpacity: 0.37,
+    map: mapa,
+    center: new google.maps.LatLng(25.729627, -100.278013),
+    radius: 20
+    };
+    circulo = new google.maps.Circle(config5);
+    }
+    </script>
+</head>
+<body onload="init()">
+  <div id="estilo" width="600" height="400"></div>
+</body>
+</html>
